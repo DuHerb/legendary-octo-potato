@@ -1,0 +1,44 @@
+{
+  "name": "@envelope-budget/ui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js"
+    },
+    "./styles": "./dist/styles.css"
+  },
+  "scripts": {
+    "build": "tsc && tailwindcss -i ./src/styles.css -o ./dist/styles.css --minify",
+    "dev": "tsc --watch",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:ui": "vitest --ui"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "clsx": "^2.0.0",
+    "@envelope-budget/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "vitest": "^1.1.0",
+    "@vitest/ui": "^1.1.0",
+    "tailwindcss": "^3.4.0",
+    "@tailwindcss/forms": "^0.5.7"
+  }
+}

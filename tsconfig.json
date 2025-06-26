@@ -1,0 +1,54 @@
+{
+  "compilerOptions": {
+    // Base configuration
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    // Strict mode for maximum type safety
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+
+    // Module resolution
+    "baseUrl": ".",
+    "paths": {
+      "@envelope-budget/shared": ["./packages/shared/src"],
+      "@envelope-budget/shared/*": ["./packages/shared/src/*"],
+      "@envelope-budget/database": ["./packages/database/src"],
+      "@envelope-budget/database/*": ["./packages/database/src/*"],
+      "@envelope-budget/ui": ["./packages/ui/src"],
+      "@envelope-budget/ui/*": ["./packages/ui/src/*"]
+    },
+
+    // Code generation
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "removeComments": false,
+
+    // Interop
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+
+    // Node.js compatibility
+    "skipLibCheck": true
+  },
+  "include": [],
+  "exclude": ["node_modules", "**/dist", "**/build"]
+}

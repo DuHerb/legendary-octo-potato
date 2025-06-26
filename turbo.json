@@ -1,0 +1,49 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**", "build/**", ".next/**", "!.next/cache/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".eslintrc*", "eslint.config.*"],
+      "outputs": []
+    },
+    "type-check": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", "tsconfig*.json"],
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", "vitest.config.*", "jest.config.*"],
+      "outputs": ["coverage/**"]
+    },
+    "format": {
+      "inputs": ["$TURBO_DEFAULT$", ".prettierrc*"],
+      "outputs": []
+    },
+    "format:check": {
+      "inputs": ["$TURBO_DEFAULT$", ".prettierrc*"],
+      "outputs": []
+    },
+    "clean": {
+      "cache": false,
+      "outputs": []
+    },
+    "db:generate": {
+      "cache": false,
+      "inputs": ["src/schemas/**"],
+      "outputs": ["src/migrations/**"]
+    },
+    "db:migrate": {
+      "cache": false
+    }
+  }
+}

@@ -1,0 +1,92 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: envelope-budget-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: envelope_budget_dev
+      POSTGRES_USER: envelope_budget_user
+      POSTGRES_PASSWORD: envelope_budget_password
+      POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - envelope-budget-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U envelope_budget_user -d envelope_budget_dev"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  postgres-test:
+    image: postgres:16-alpine
+    container_name: envelope-budget-postgres-test
+    restart: "no"
+    environment:
+      POSTGRES_DB: envelope_budget_test
+      POSTGRES_USER: envelope_budget_user
+      POSTGRES_PASSWORD: envelope_budget_password
+      POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256"
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_test_data:/var/lib/postgresql/data
+    networks:
+      - envelope-budget-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U envelope_budget_user -d envelope_budget_test"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    profiles:
+      - test
+
+  # Development services (optional)
+  adminer:
+    image: adminer:latest
+    container_name: envelope-budget-adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    networks:
+      - envelope-budget-network
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
+    profiles:
+      - admin
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  redis:
+    image: redis:7-alpine
+    container_name: envelope-budget-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - envelope-budget-network
+    command: redis-server --appendonly yes
+    profiles:
+      - cache
+
+volumes:
+  postgres_data:
+    driver: local
+  postgres_test_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  envelope-budget-network:
+    driver: bridge
