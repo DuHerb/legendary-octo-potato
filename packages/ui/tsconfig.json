@@ -33,7 +33,9 @@
     "**/*.test.ts",
     "**/*.test.tsx",
     "**/*.spec.ts",
-    "**/*.spec.tsx"
+    "**/*.spec.tsx",
+    "**/*.stories.tsx",
+    ".storybook"
   ],
   "references": [
     { "path": "../shared" }

@@ -242,13 +242,24 @@ Detailed specifications are organized in `.claude/specs/`:
 
 ## Current Session Goals
 
-### Session 3 (Next)
-**Focus**: Phase 2 Database Layer Implementation
-- [ ] Set up Drizzle ORM configuration
-  - Issue: TBD (use `/pushIssue Phase 2` to create)
-  - Worktree: TBD
-  - Branch: TBD
-  - Status: Ready to start
+### Session 3 (Current)
+**Focus**: Storybook and UI Component Development
+
+#### 3.1 Worktree Access Issue ⚠️ **NEEDS RESOLUTION**
+- Issue: Claude Code security constraints prevent `cd` to `../worktrees/` directory
+- Current Limitation: Cannot access worktrees created outside working directory
+- **Proposed Solutions**:
+  1. Create worktrees within project subdirectory (`./worktrees/`)
+  2. Use regular branch workflow instead of git worktrees
+  3. Modify Claude Code container permissions (requires user intervention)
+- **Current Approach**: Using regular branch workflow for issue development
+
+#### 3.2 Storybook Implementation ⏳ **IN PROGRESS**
+- [ ] Implement Storybook with generic Button component
+  - Issue: #5
+  - Worktree: ../worktrees/issue-5-* (blocked by access issue)
+  - Branch: storybook-button-implementation
+  - Status: In progress (using regular branch workflow)
 - [ ] Implement complete database schema
 - [ ] Create DAO pattern architecture
 - [ ] Add migration system
