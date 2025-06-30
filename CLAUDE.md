@@ -232,3 +232,58 @@ These specifications contain the detailed architectural decisions and implementa
 
 ### Version Control
 - Make sure that we commit often: we don't want every intermidiate change commited, but we don't want to lose significant, working implementations.
+
+### GitHub CLI Integration
+- Use GitHub CLI for issue and PR management
+- All Claude Code created issues should include attribution footer
+- Attribution format:
+  ```
+  ---
+  🤖 Created by Claude Code
+  
+  Co-authored-by: Claude <noreply@anthropic.com>
+  ```
+
+### Git Worktree Workflow
+- Use dedicated worktrees for each issue to isolate work
+- Worktrees created in `../worktrees/issue-[number]-[title]` directory
+- Commands available:
+  - `/prime` - Initialize new Claude Code agents with full project context
+  - `/pushIssue [task]` - Creates comprehensive GitHub issues with context
+  - `/pullIssue [number]` - Creates worktree and switches to it
+  - `/closeIssue [number]` - Closes issue, creates PR, cleans up worktree
+  - `/review [pr|issue|branch] [target]` - Deploy specialized review agent for thorough code review
+- Benefits: Isolated work environments, no branch switching conflicts
+
+### Claude Code Agent Initialization
+- **Always run `/prime` at the start of new Claude Code sessions**
+- Ensures consistent project understanding across agent instances
+- Prevents architectural violations from knowledge gaps
+- Establishes proper context for multi-agent collaboration
+
+### Progress Tracking Integration
+- **Always update plan.md with issue/worktree references for tasks**
+- For each task/phase worked on, include:
+  - **GitHub Issue**: Link to related issue (#number)
+  - **Worktree Path**: Location of isolated workspace (../worktrees/issue-X-name)
+  - **Branch Name**: Git branch for the work (issue-X-description)
+  - **Status**: Current progress (pending/in-progress/completed)
+- Update task status in plan.md when:
+  - Creating issues with `/pushIssue`
+  - Starting work with `/pullIssue`
+  - Completing work with `/closeIssue`
+- Example format in plan.md:
+  ```
+  - [x] Set up Drizzle ORM configuration
+    - Issue: #5
+    - Worktree: ../worktrees/issue-5-drizzle-setup
+    - Branch: issue-5-drizzle-setup
+    - Status: Completed
+  ```
+
+### Code Review Standards
+- **Use `/review` command for all PR and issue reviews**
+- Review agents must be thorough, critical, and constructive
+- **Zero tolerance** for DAO pattern violations or TypeScript compromises
+- Reviews should question design decisions and suggest improvements
+- All reviews must enforce project standards without exception
