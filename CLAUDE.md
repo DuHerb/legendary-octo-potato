@@ -232,3 +232,22 @@ These specifications contain the detailed architectural decisions and implementa
 
 ### Version Control
 - Make sure that we commit often: we don't want every intermidiate change commited, but we don't want to lose significant, working implementations.
+
+### GitHub CLI Integration
+- Use GitHub CLI for issue and PR management
+- All Claude Code created issues should include attribution footer
+- Attribution format:
+  ```
+  ---
+  🤖 Created by Claude Code
+  
+  Co-authored-by: Claude <noreply@anthropic.com>
+  ```
+
+### Git Worktree Workflow
+- Use dedicated worktrees for each issue to isolate work
+- Worktrees created in `../worktrees/issue-[number]-[title]` directory
+- Commands available:
+  - `/pullIssue [number]` - Creates worktree and switches to it
+  - `/closeIssue [number]` - Closes issue, creates PR, cleans up worktree
+- Benefits: Isolated work environments, no branch switching conflicts
