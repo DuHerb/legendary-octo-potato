@@ -248,6 +248,14 @@ These specifications contain the detailed architectural decisions and implementa
 - Use dedicated worktrees for each issue to isolate work
 - Worktrees created in `../worktrees/issue-[number]-[title]` directory
 - Commands available:
+  - `/prime` - Initialize new Claude Code agents with full project context
+  - `/pushIssue [task]` - Creates comprehensive GitHub issues with context
   - `/pullIssue [number]` - Creates worktree and switches to it
   - `/closeIssue [number]` - Closes issue, creates PR, cleans up worktree
 - Benefits: Isolated work environments, no branch switching conflicts
+
+### Claude Code Agent Initialization
+- **Always run `/prime` at the start of new Claude Code sessions**
+- Ensures consistent project understanding across agent instances
+- Prevents architectural violations from knowledge gaps
+- Establishes proper context for multi-agent collaboration
