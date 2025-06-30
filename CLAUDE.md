@@ -252,6 +252,7 @@ These specifications contain the detailed architectural decisions and implementa
   - `/pushIssue [task]` - Creates comprehensive GitHub issues with context
   - `/pullIssue [number]` - Creates worktree and switches to it
   - `/closeIssue [number]` - Closes issue, creates PR, cleans up worktree
+  - `/review [pr|issue|branch] [target]` - Deploy specialized review agent for thorough code review
 - Benefits: Isolated work environments, no branch switching conflicts
 
 ### Claude Code Agent Initialization
@@ -279,3 +280,10 @@ These specifications contain the detailed architectural decisions and implementa
     - Branch: issue-5-drizzle-setup
     - Status: Completed
   ```
+
+### Code Review Standards
+- **Use `/review` command for all PR and issue reviews**
+- Review agents must be thorough, critical, and constructive
+- **Zero tolerance** for DAO pattern violations or TypeScript compromises
+- Reviews should question design decisions and suggest improvements
+- All reviews must enforce project standards without exception
