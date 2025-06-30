@@ -259,3 +259,23 @@ These specifications contain the detailed architectural decisions and implementa
 - Ensures consistent project understanding across agent instances
 - Prevents architectural violations from knowledge gaps
 - Establishes proper context for multi-agent collaboration
+
+### Progress Tracking Integration
+- **Always update plan.md with issue/worktree references for tasks**
+- For each task/phase worked on, include:
+  - **GitHub Issue**: Link to related issue (#number)
+  - **Worktree Path**: Location of isolated workspace (../worktrees/issue-X-name)
+  - **Branch Name**: Git branch for the work (issue-X-description)
+  - **Status**: Current progress (pending/in-progress/completed)
+- Update task status in plan.md when:
+  - Creating issues with `/pushIssue`
+  - Starting work with `/pullIssue`
+  - Completing work with `/closeIssue`
+- Example format in plan.md:
+  ```
+  - [x] Set up Drizzle ORM configuration
+    - Issue: #5
+    - Worktree: ../worktrees/issue-5-drizzle-setup
+    - Branch: issue-5-drizzle-setup
+    - Status: Completed
+  ```
