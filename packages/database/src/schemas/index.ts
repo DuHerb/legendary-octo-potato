@@ -1,3 +1,19 @@
-// Drizzle ORM schemas - placeholder for Phase 2
-// Complete schema implementation will be added in Phase 2
-export const schemasPlaceholder = 'Database schemas will be implemented in Phase 2'
+export * from './users'
+export * from './buckets'
+export * from './money-buckets'
+export * from './transactions'
+
+// Re-export all schemas for database connections
+import { users } from './users'
+import { buckets } from './buckets'
+import { moneyBuckets } from './money-buckets'
+import { depositTransactions, bucketTransactions, moneyBucketTransactions } from './transactions'
+
+export const schema = {
+  users,
+  buckets,
+  moneyBuckets,
+  depositTransactions,
+  bucketTransactions,
+  moneyBucketTransactions,
+}

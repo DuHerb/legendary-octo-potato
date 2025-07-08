@@ -1,4 +1,5 @@
-// Database package exports - placeholder for Phase 2
-export * from './schemas'
-export * from './dao'
-export * from './types'
+export * from './schemas/index'
+export * from './types/index'
+export * from './connection'
+export * from './dao/index'
+export * from './utils/index'
