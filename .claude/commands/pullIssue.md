@@ -48,6 +48,10 @@ BRANCH_NAME="issue-$ARGUMENTS-$(gh issue view $ARGUMENTS --json title -q .title 
 
 # Create and checkout new branch from latest main/develop
 git checkout -b "$BRANCH_NAME"
+
+# Ensure we're on the new feature branch
+echo "✅ Created and switched to branch: $BRANCH_NAME"
+git branch --show-current
 ```
 
 #### 2.4 Create Issue Planning Directory
@@ -171,8 +175,10 @@ gh issue list --state $ARGUMENTS --limit 15
 - ✅ Issue details retrieved
 - ✅ Latest main branch pulled
 - ✅ Development branch created: `[branch-name]`
+- ✅ **Switched to feature branch** (confirmed working on correct branch)
 - ✅ Issue planning document generated
 - ✅ GitHub issue updated with development status
+- ✅ plan.md updated to reflect issue in progress
 
 ## Quick Context
 [Brief summary of what this issue involves]
@@ -185,6 +191,8 @@ gh issue list --state $ARGUMENTS --limit 15
 
 ## Ready to Code! 
 Your development environment is ready. The issue planning document contains comprehensive context and will be updated as you progress.
+
+**IMPORTANT**: Ensure all work is committed to the feature branch `[branch-name]`, not main.
 
 Start with: [specific first task]
 ```
@@ -269,6 +277,7 @@ To start work on any issue, use: `/pullIssue [issue-number]`
 - Work starts immediately in current Claude Code session
 - All context available in planning document
 - Always starts from latest codebase
+- **Automatic branch switching** ensures work happens on correct feature branch
 
 ### Better Organization
 - Each issue has dedicated planning and tracking
@@ -289,3 +298,5 @@ To start work on any issue, use: `/pullIssue [issue-number]`
 - Always update GitHub issue with development progress
 - Planning docs should be detailed enough for another developer to continue work
 - Branches are always created from the latest main/develop to avoid conflicts
+- **CRITICAL**: Always verify you're working on the feature branch, not main
+- All commits should go to the feature branch for proper PR workflow
