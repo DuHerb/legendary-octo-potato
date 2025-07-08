@@ -104,10 +104,16 @@ fi
 ```
 
 ### 7. Update Project Tracking
-If issue is part of a phase, update plan.md:
+Update plan.md to mark phase/task as completed:
 ```bash
 # Check if this was a phase-related issue
 if gh issue view $ARGUMENTS --json labels -q '.labels[].name' | grep -q "phase"; then
+    echo "📋 **REQUIRED**: Update plan.md to mark phase as COMPLETED"
+    echo "  - Change status from IN PROGRESS to COMPLETED"
+    echo "  - Add completion timestamp and PR reference"
+    echo "  - Mark all subtasks as [x] completed"
+    echo "  - Update session notes with achievements"
+else
     echo "📋 Consider updating plan.md to reflect completed work"
 fi
 ```

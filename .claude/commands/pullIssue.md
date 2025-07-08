@@ -134,6 +134,15 @@ gh issue comment $ARGUMENTS --body "🚀 **Development Started**
 Development is now in progress. All work will be tracked in the issue-specific planning document."
 ```
 
+#### 2.7 Update plan.md with Issue Progress
+```bash
+# Update plan.md to show issue in progress
+# Add issue reference, branch name, and status
+# Mark relevant phase/section as "IN PROGRESS"
+# Include task progress updates
+echo "📋 Update plan.md to reflect issue #$ARGUMENTS is in progress"
+```
+
 ### 3. For Search/List Operations - Analysis Only
 
 #### 3.1 Execute Search
